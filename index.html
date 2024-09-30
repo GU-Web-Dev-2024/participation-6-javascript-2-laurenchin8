@@ -66,29 +66,28 @@
         // adds an event listener (for a click) of that selected element.
         // executes the code in the body of the anonymous function
         document.getElementById('guess-button').addEventListener('click', function() {
-            guessInput = parseInt(document.getElementById('guess-button').value);
-            while(numGuess != 3) {
+            guessInput = parseInt(document.getElementById('guess-input').value);
+            if (numGuess < 3) {
                 if (guessInput < randNum) {
-                    print("Too low! Try again!")
                     numGuess++;
+                    document.getElementById('message').textContent = "Too low! Try again!";
                 }
                 else if (guessInput > randNum) {
-                    print("Too high! Try again!")
                     numGuess++;
+                    document.getElementById('message').textContent = "Too high! Try again!";
                 }
                 else {
-                    print("Correct! You guessed the number!")
                     numGuess++;
+                    document.getElementById('message').textContent = "Correct! You guessed the number!";
                     correct = true;
-                    break
                 }
             }
+
             if (correct == true) {
-                print("You won! Good job!")
+                document.getElementById('message').textContent = "You won! Good job!";
             }
-            else {
-                print("The number was: " + randNum);
-                print("Better luck next time!");
+            else if (numGuess >= 3 && !correct) {
+                document.getElementById('message').textContent = " The number was: " + randNum + ". Better luck next time!";
             }
         });
     </script>
