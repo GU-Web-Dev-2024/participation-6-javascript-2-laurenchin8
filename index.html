@@ -50,6 +50,11 @@
         <div>
             <p id="message"></p>
         </div>
+
+        <div>
+            <button id="reset-button">Reset</button>
+        </div>
+
         <hr>
     </div>
 
@@ -89,6 +94,13 @@
             else if (numGuess >= 3 && !correct) {
                 document.getElementById('message').textContent = " The number was: " + randNum + ". Better luck next time!";
             }
+        });
+        
+        document.getElementById('reset-button').addEventListener('click', function() {
+            numGuess = 0;
+            randNum = Math.floor((Math.random()* 10) + 1)
+            correct = false;
+            document.getElementById('message').textContent = "Game was reset!";
         });
     </script>
 </body>
