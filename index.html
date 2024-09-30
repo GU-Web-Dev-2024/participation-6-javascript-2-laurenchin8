@@ -55,17 +55,42 @@
 
     <script>
         // JavaScript code goes here   
-
+        let numGuess = 0;
+        let randNum = Math.floor((Math.random()* 10) + 1)
+        let guessInput;
+        let correct = false;
 
         // Added a click listener to the button (will be covered more in zyBook 7.4), 
         // for now just use the following which:
         // uses the document object and selects the element with a matching Id found in the DOM.
         // adds an event listener (for a click) of that selected element.
         // executes the code in the body of the anonymous function
-        document.getElementById('guess-button').addEventListener('click', function () {
-            //function body -- any code here will be executed when the registered event is triggered.
+        document.getElementById('guess-button').addEventListener('click', function() {
+            guessInput = parseInt(document.getElementById('guess-button').value);
+            while(numGuess != 3) {
+                if (guessInput < randNum) {
+                    print("Too low! Try again!")
+                    numGuess++;
+                }
+                else if (guessInput > randNum) {
+                    print("Too high! Try again!")
+                    numGuess++;
+                }
+                else {
+                    print("Correct! You guessed the number!")
+                    numGuess++;
+                    correct = true;
+                    break
+                }
+            }
+            if (correct == true) {
+                print("You won! Good job!")
+            }
+            else {
+                print("The number was: " + randNum);
+                print("Better luck next time!");
+            }
         });
-
     </script>
 </body>
 
