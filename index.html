@@ -106,6 +106,13 @@
 
         document.getElementById('guess-button').addEventListener('click', function() {
             guessInput = parseInt(document.getElementById('guess-input').value);
+
+            // validating the user's guess input
+            if (isNaN(guessInput) || guessInput < minRange || guessInput > maxRange) {
+                alert("Please enter a valid number between " + minRange + " and " + maxRange + ".");
+                return;
+            }
+
             if (numGuess < 3) {
                 if (guessInput < randNum) {
                     numGuess++;
