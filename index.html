@@ -86,8 +86,8 @@
         // executes the code in the body of the anonymous function
 
         document.getElementById('set-range-button').addEventListener('click', function() {
-            minRange = parseInt(document.getElementById("set-min"));
-            maxRange = parseInt(document.getElementById("set-max"));
+            minRange = parseInt(document.getElementById("set-min").value);
+            maxRange = parseInt(document.getElementById("set-max").value);
 
             // make sure range values are valid
             if (minRange >= maxRange) {
