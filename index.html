@@ -34,9 +34,21 @@
 <body>
     <div class="outside-border">
 
-        <h1>Guess the Number (1-10)</h1>
+        <h1 id="title-text">Guess the Number (1-10)</h1>
 
         <hr>
+
+        <div>
+            <!-- this is adding for allowing user to set a range-->
+            <label for="set-min">Min: </label>
+            <input type="number" id="set-min" value="1">
+            <label for="set-max"> Max: </label>
+            <input type="number" id="set-max" value="10">
+        </div>
+
+        <div>
+            <button id="set-range-button">Set Range</button>
+        </div>
 
         <div>
             <label for="guess-input">Guess:</label>
@@ -64,12 +76,34 @@
         let randNum = Math.floor((Math.random()* 10) + 1)
         let guessInput;
         let correct = false;
+        // more variables for setting range
+        let minRange = 1;
+        let maxRange = 10;
 
-        // Added a click listener to the button (will be covered more in zyBook 7.4), 
-        // for now just use the following which:
+        // adding click listener to the buttons 
         // uses the document object and selects the element with a matching Id found in the DOM.
         // adds an event listener (for a click) of that selected element.
         // executes the code in the body of the anonymous function
+
+        document.getElementById('set-range-button').addEventListener('click', function() {
+            minRange = parseInt(document.getElementById("set-min"));
+            maxRange = parseInt(document.getElementById("set-max"));
+
+            // make sure range values are valid
+            if (minRange >= maxRange) {
+                document.getElementById('message').textContent = "Invalid range! Min must be less than max.";
+                return;
+            }
+
+            // change heading name with new range
+            document.getElementById('title-text').textContent = "Guess the Number (" + minRange + "-" + maxRange + ")";
+
+            // generate random number in the new range
+            randNum = Math.floor(Math.random() * (maxRange - minRange + 1)) + minRange;
+            document.getElementById('message').textContent = "Range set to " + minRange + "-" + maxRange + ". Start guessing!";
+            numGuess = 0; // reset guess count
+        });
+
         document.getElementById('guess-button').addEventListener('click', function() {
             guessInput = parseInt(document.getElementById('guess-input').value);
             if (numGuess < 3) {
